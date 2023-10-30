@@ -1,9 +1,12 @@
 // import { useState } from 'react';
+import FirstStep from '../components/FirstStep/FirstStep';
 
 import './App.css';
 
-function Form() {
-	return <></>;
+export default function App() {
+	return (
+		<div className="Form">
+			<FirstStep />
+		</div>
+	);
 }
-
-export default Form;

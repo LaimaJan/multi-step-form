@@ -1,0 +1,67 @@
+.form-steps-side {
+	position: relative;
+}
+
+.steps-card-container {
+	position: absolute;
+	top: 40px;
+	left: 40px;
+}
+
+.steps-card-container {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.steps-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 20px;
+}
+
+.step-number {
+	padding: 11px 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 20px;
+	border: 1px solid var(--light-blue);
+}
+
+.step-number p {
+	color: var(--white);
+}
+
+.steps-info {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.step {
+	color: var(--cool-gray);
+	text-transform: uppercase;
+	font-size: 14px;
+}
+
+.step-additional-info {
+	color: var(--white);
+	font-weight: 600;
+	font-size: 15px;
+	text-transform: uppercase;
+}
+
+.first-step-container .step-number {
+	background-color: var(--light-blue);
+}
+
+.step-number p {
+	font-size: 17px;
+	font-weight: 500;
+}
+
+.first-step-container .step-number p {
+	color: var(--marine-blue);
+}

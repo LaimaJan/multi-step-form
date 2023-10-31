@@ -54,7 +54,19 @@
 	gap: 20px;
 }
 
-.form-labels-inputs-container label {
+.labels-inputs {
+	display: flex;
+	flex-direction: column;
+}
+
+.label-alert-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 7px;
+}
+
+.label-alert-container label {
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
@@ -64,7 +76,13 @@
 	max-height: 73px;
 }
 
-.form-labels-inputs-container label input {
+.alert {
+	display: none;
+	color: var(--strawberry-red);
+	font-weight: 600;
+}
+
+.labels-inputs input {
 	border-radius: 8px;
 	border: 1px solid var(--cool-gray);
 	padding: 15px 10px;
@@ -74,20 +92,24 @@
 	outline: none;
 }
 
-.form-labels-inputs-container label input:focus {
+.labels-inputs input:focus {
 	outline: 1px solid var(--pastel-blue);
 }
 
-.form-labels-inputs-container label input::placeholder {
+.labels-inputs input::placeholder {
 	font-size: 18px;
 	font-weight: 500;
+}
+
+.labels-inputs .on-alert {
+	border: 1px solid var(--strawberry-red);
 }
 
 .form-buttons {
 	text-align: right;
 }
 
-.first-step-next-button {
+.next-button {
 	padding: 15px 25px;
 	border-radius: 5px;
 	border: none;
@@ -95,4 +117,19 @@
 	color: var(--white);
 	font-weight: 600;
 	font-size: 16px;
+}
+
+/* STEPS CONTAINER CSS */
+
+.first-step-container .step-round-number {
+	background-color: var(--light-blue);
+}
+
+.step-round-number p {
+	font-size: 17px;
+	font-weight: 500;
+}
+
+.first-step-container .step-round-number p {
+	color: var(--marine-blue);
 }

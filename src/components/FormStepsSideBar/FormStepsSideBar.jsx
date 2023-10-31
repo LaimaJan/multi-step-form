@@ -8,7 +8,7 @@ export default function FormStepsSideBar({ className }) {
 			<img src={SideBarBackgroundDesktop} alt="side-bar-background-img" />
 			<div className="steps-card-container">
 				<div className="first-step-container steps-container">
-					<div className="step-number">
+					<div className="step-round-number">
 						<p>1</p>
 					</div>
 					<div className="steps-info">
@@ -17,7 +17,7 @@ export default function FormStepsSideBar({ className }) {
 					</div>
 				</div>
 				<div className="second-step-container steps-container">
-					<div className="step-number">
+					<div className="step-round-number">
 						<p>2</p>
 					</div>
 					<div className="steps-info">
@@ -26,7 +26,7 @@ export default function FormStepsSideBar({ className }) {
 					</div>
 				</div>
 				<div className="third-step-container steps-container">
-					<div className="step-number">
+					<div className="step-round-number">
 						<p>3</p>
 					</div>
 					<div className="steps-info">
@@ -35,7 +35,7 @@ export default function FormStepsSideBar({ className }) {
 					</div>
 				</div>
 				<div className="fourth-step-container steps-container">
-					<div className="step-number">
+					<div className="step-round-number">
 						<p>4</p>
 					</div>
 					<div className="steps-info">

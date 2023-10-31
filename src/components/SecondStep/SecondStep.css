@@ -1,0 +1,106 @@
+.select-plan-card {
+	background-color: var(--alabaster);
+	max-width: 1200px;
+	width: 100%;
+	max-height: 700px;
+	height: 100%;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+
+	padding: 20px;
+	border-radius: var(--border-radius);
+}
+
+.select-plan-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 0 110px;
+	max-width: 600px;
+	width: 100%;
+}
+
+.select-plan-container .info {
+	padding-bottom: 20px;
+}
+
+.plan-options {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+}
+
+.toggle-switch {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.toggle-switch p {
+	margin: 0 10px;
+}
+
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 50px;
+	height: 22px;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: var(--marine-blue);
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+	border-radius: 34px;
+}
+
+.slider.round {
+	border-radius: 34px;
+}
+
+.switch input {
+	display: none;
+}
+
+.switch input:checked + .slider:before {
+	-webkit-transform: translateX(23px);
+	-ms-transform: translateX(23px);
+	transform: translateX(23px);
+}
+
+.slider.round:before {
+	border-radius: 50%;
+	content: '';
+	position: absolute;
+	height: 16px;
+	width: 16px;
+	left: 6px;
+	bottom: 3px;
+	background-color: white;
+}
+
+.plan-buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.go-back-button {
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	color: var(--marine-blue);
+	font-size: 16px;
+	font-weight: 600;
+}

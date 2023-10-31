@@ -15,26 +15,48 @@ export default function FirstStep() {
 							</p>
 						</div>
 						<div className="form-labels-inputs-container">
-							<label>
-								Name
-								<input type="text" name="name" placeholder="Name" />
-							</label>
-							<label>
-								Email Address
-								<input type="email" name="email" placeholder="Email" />
-							</label>
-							<label>
-								Phone Number
+							<div className="labels-inputs">
+								<div className="label-alert-container">
+									<label>Name</label>
+									<p className="name-alert alert">This field is required</p>
+								</div>
 								<input
+									// className="on-alert"
+									type="text"
+									name="name"
+									placeholder="Name"
+								/>
+							</div>
+
+							<div className="labels-inputs">
+								<div className="label-alert-container">
+									<label>Email Address</label>
+									<p className="name-alert alert">This field is required</p>
+								</div>
+								<input
+									// className="on-alert"
+									type="email"
+									name="email"
+									placeholder="Email"
+								/>
+							</div>
+
+							<div className="labels-inputs">
+								<div className="label-alert-container">
+									<label> Phone Number</label>
+									<p className="name-alert alert">This field is required</p>
+								</div>
+								<input
+									// className="on-alert"
 									type="tel"
 									name="phone"
 									placeholder="e.g. +1234 567 890"
 								/>
-							</label>
+							</div>
 						</div>
 					</div>
 					<div className="form-buttons">
-						<button className="first-step-next-button">Next Step</button>
+						<button className="next-button">Next Step</button>
 					</div>
 				</div>
 			</div>

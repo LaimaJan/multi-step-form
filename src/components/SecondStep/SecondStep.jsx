@@ -57,6 +57,8 @@ export default function SecondStep() {
 				id: plan.id,
 				planName: plan.planName,
 				planPricingMonth: plan.planPricingMonth,
+				planPricingYearly: '',
+				planYearlyDeal: '',
 				monthlyOrYearly: selectedOption,
 			});
 		} else {
@@ -64,6 +66,7 @@ export default function SecondStep() {
 				...planChosen,
 				id: plan.id,
 				planName: plan.planName,
+				planPricingMonth: '',
 				planPricingYearly: plan.planPricingYearly,
 				planYearlyDeal: plan.planYearlyDeal,
 				monthlyOrYearly: selectedOption,
@@ -122,7 +125,12 @@ export default function SecondStep() {
 					</button>
 
 					<button className="next-button">
-						<Link to={'/step3'}>Next Step</Link>
+						<Link
+							to={'/step3'}
+							className={planChosen.id ? '' : 'disabled-link'}
+						>
+							Next Step
+						</Link>
 					</button>
 				</div>
 			</div>

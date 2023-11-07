@@ -151,6 +151,10 @@ a {
 	color: var(--white);
 }
 
+.disabled-link {
+	pointer-events: none;
+}
+
 .go-back-button {
 	border: none;
 	background-color: transparent;

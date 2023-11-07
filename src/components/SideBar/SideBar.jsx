@@ -1,8 +1,8 @@
-import './FormStepsSideBar.css';
+import './SideBar.css';
 import PropTypes from 'prop-types';
 import SideBarBackgroundDesktop from '../../assets/images/bg-sidebar-desktop.svg';
 
-export default function FormStepsSideBar({ className }) {
+export default function SideBar({ className }) {
 	return (
 		<div className={`form-steps-side ${className}`}>
 			<img src={SideBarBackgroundDesktop} alt="side-bar-background-img" />
@@ -48,6 +48,6 @@ export default function FormStepsSideBar({ className }) {
 	);
 }
 
-FormStepsSideBar.propTypes = {
+SideBar.propTypes = {
 	className: PropTypes.string,
 };

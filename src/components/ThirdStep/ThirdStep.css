@@ -1,0 +1,120 @@
+.pick-add-ons-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 0 110px;
+	max-height: 487px;
+	max-width: 600px;
+	width: 100%;
+}
+
+.step-info-add-ons-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: left;
+	text-align: left;
+}
+
+.step-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: left;
+	gap: 20px;
+}
+
+.info-heading {
+	font-size: 31px;
+	font-weight: 600;
+	color: var(--marine-blue);
+}
+
+.info {
+	color: var(--cool-gray);
+	margin-bottom: 10px;
+}
+
+.add-ons {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	height: 300px;
+	margin-bottom: 50px;
+}
+
+.add-ons button {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	text-align: left;
+	width: 100%;
+	height: 75px;
+
+	padding: 5px 25px;
+	border-radius: 5px;
+	border: 1px solid var(--light-gray);
+	background-color: var(--alabaster);
+}
+
+.add-ons button:focus {
+	border: 1px solid var(--purplish-blue);
+	background-color: var(--magnolia);
+}
+
+.add-ons button:hover {
+	border: 1px solid var(--purplish-blue);
+	background-color: var(--magnolia);
+}
+
+.check-box-service-info-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+}
+
+.check-box-service-info-container input[type='checkbox'] {
+	width: 17px;
+	height: 17px;
+	padding: 5px;
+	border: 1px solid var(--light-gray);
+}
+
+.check-box-service-info-container input[type='checkbox']:checked {
+	accent-color: var(--purplish-blue);
+	border-radius: 5px;
+}
+
+.add-ons-info {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.add-ons-title {
+	font-weight: 600;
+	color: var(--marine-blue);
+	font-size: 15px;
+}
+
+.add-ons-service {
+	color: var(--cool-gray);
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.add-ons-price {
+	color: var(--purplish-blue);
+	font-weight: 600;
+	font-size: 14px;
+}
+
+.plan-buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-top: 20px;
+}

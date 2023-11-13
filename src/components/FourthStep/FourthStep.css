@@ -1,0 +1,97 @@
+.finishing-up-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 0 110px;
+	max-height: 487px;
+	max-width: 600px;
+	width: 100%;
+}
+
+.finishing-up-info-summary-container {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.finishing-up {
+	display: flex;
+	flex-direction: column;
+	justify-content: left;
+	gap: 20px;
+}
+
+.total-pricing {
+	background-color: var(--magnolia);
+	border-radius: 10px;
+	padding: 25px;
+}
+
+.plan-summary {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.plan-title-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 10px;
+}
+
+.plan-title {
+	font-weight: 600;
+}
+
+.change-plan-title a {
+	color: var(--cool-gray);
+	text-decoration: underline;
+}
+
+.plan-total-pricing {
+	font-weight: 600;
+}
+
+.horizontal-line {
+	border: 1px solid var(--light-gray);
+	margin: 30px 0;
+}
+
+.other-services-pricing-container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.services-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.services-title {
+	color: var(--cool-gray);
+}
+
+.services-pricing {
+	color: black;
+}
+
+.total-plan-services-pricing {
+	margin: 0 25px 70px 25px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.total-plan-services-pricing {
+	color: var(--cool-gray);
+}
+
+.total-price {
+	color: var(--purplish-blue);
+	font-size: 19px;
+	font-weight: 600;
+}

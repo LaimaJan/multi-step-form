@@ -1,0 +1,22 @@
+.thank-you-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+	padding: 0 110px;
+	max-height: 487px;
+	max-width: 600px;
+	width: 100%;
+	gap: 25px;
+}
+
+.thank-you-title {
+	font-weight: 600;
+	font-size: 30px;
+}
+
+.thank-you-support-message {
+	line-height: 1.8;
+	color: var(--cool-gray);
+}

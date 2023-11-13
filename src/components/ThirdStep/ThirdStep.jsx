@@ -4,7 +4,9 @@ import { useState } from 'react';
 
 export default function ThirdStep() {
 	const [selectedAddOns, setSelectedAddOns] = useState([]);
-	console.log(selectedAddOns);
+	const [serviceChosen, setServiceChosen] = useState([]);
+
+	console.log(serviceChosen);
 
 	const addOnsInformation = [
 		{
@@ -30,8 +32,18 @@ export default function ThirdStep() {
 	const toggleAddOn = (addOnId) => {
 		if (selectedAddOns.includes(addOnId)) {
 			setSelectedAddOns(selectedAddOns.filter((id) => id !== addOnId));
+
+			const updatedServices = serviceChosen.filter(
+				(service) => service.id !== addOnId
+			);
+			setServiceChosen(updatedServices);
 		} else {
 			setSelectedAddOns([...selectedAddOns, addOnId]);
+
+			const selectedService = addOnsInformation.find(
+				(service) => service.id === addOnId
+			);
+			setServiceChosen([...serviceChosen, selectedService]);
 		}
 	};
 
@@ -54,6 +66,7 @@ export default function ThirdStep() {
 											checked={isChecked}
 											onChange={() => toggleAddOn(addOn.id)}
 										/>
+
 										<div className="add-ons-info">
 											<p className="add-ons-title">{addOn.addOnsTitle}</p>
 											<p className="add-ons-service">{addOn.service}</p>

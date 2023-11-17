@@ -1,4 +1,5 @@
 import './StepTitle.css';
+import PropTypes from 'prop-types';
 
 export default function StepTitle({ heading, additionalInfo }) {
 	return (
@@ -8,3 +9,8 @@ export default function StepTitle({ heading, additionalInfo }) {
 		</div>
 	);
 }
+
+StepTitle.propTypes = {
+	heading: PropTypes.string,
+	additionalInfo: PropTypes.string,
+};

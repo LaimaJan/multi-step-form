@@ -15,6 +15,7 @@ export default function App() {
 	const [planInfo, setPlanInfo] = useState();
 	const [serviceInfo, setServiceInfo] = useState();
 	const [selectedSliderOption, setSelectedSliderOption] = useState('Monthly');
+	const [sideBarStepNumber, setSideBarStepNumber] = useState(1);
 
 	const updatePlanInfo = (newPlanInfo) => {
 		setPlanInfo(newPlanInfo);
@@ -24,13 +25,21 @@ export default function App() {
 		setServiceInfo(newServiceInfo);
 	};
 
-	useEffect(() => {}, [planInfo, serviceInfo, selectedSliderOption]);
+	useEffect(() => {}, [
+		planInfo,
+		serviceInfo,
+		selectedSliderOption,
+		sideBarStepNumber,
+	]);
 
 	return (
 		<div className="App">
-			<SideBar />
+			<SideBar sideBarStepNumber={sideBarStepNumber} />
 			<Routes>
-				<Route path="/" element={<FirstStep />} />
+				<Route
+					path="/"
+					element={<FirstStep setSideBarStepNumber={setSideBarStepNumber} />}
+				/>
 				<Route
 					path="/step2"
 					element={
@@ -38,6 +47,7 @@ export default function App() {
 							updatePlanInfo={updatePlanInfo}
 							selectedSliderOption={selectedSliderOption}
 							setSelectedSliderOption={setSelectedSliderOption}
+							setSideBarStepNumber={setSideBarStepNumber}
 						/>
 					}
 				/>
@@ -47,6 +57,7 @@ export default function App() {
 						<ThirdStep
 							updateServiceInfo={updateServiceInfo}
 							selectedSliderOption={selectedSliderOption}
+							setSideBarStepNumber={setSideBarStepNumber}
 						/>
 					}
 				/>
@@ -57,7 +68,7 @@ export default function App() {
 							infoAboutPlan={planInfo}
 							infoAboutServices={serviceInfo}
 							selectedSliderOption={selectedSliderOption}
-							// countTotalPrice={countTotalPrice}
+							setSideBarStepNumber={setSideBarStepNumber}
 						/>
 					}
 				/>

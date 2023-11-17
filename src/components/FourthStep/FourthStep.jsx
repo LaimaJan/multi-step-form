@@ -2,17 +2,19 @@ import { useState, useEffect } from 'react';
 import './FourthStep.css';
 import ForwardBackButtons from '../ForwardBackButtons/ForwardBackButtons';
 import { Link } from 'react-router-dom';
+import StepTitle from '../StepTitle/StepTitle';
 import PropTypes from 'prop-types';
 
 export default function FourthStep({
 	infoAboutPlan,
 	infoAboutServices,
 	selectedSliderOption,
+	setSideBarStepNumber,
 }) {
 	const [planInfo, setPlanInfo] = useState([]);
 	const [servicesInfo, setServicesInfo] = useState([]);
 	const [totalPrice, setTotalPrice] = useState('');
-
+	const stepNumber = 4;
 	const objectOfPlanInfo = planInfo;
 
 	useEffect(() => {
@@ -55,6 +57,7 @@ export default function FourthStep({
 		setPlanInfo(infoAboutPlan || []);
 		setServicesInfo(infoAboutServices || []);
 		setTotalPrice(countTotalPrice());
+		setSideBarStepNumber(stepNumber);
 	}, [
 		infoAboutPlan,
 		infoAboutServices,
@@ -62,18 +65,24 @@ export default function FourthStep({
 		planInfo.planPricingMonth,
 		planInfo.planPricingYearly,
 		servicesInfo,
+		setSideBarStepNumber,
 	]);
+
+	const handleNextButtonClick = () => {
+		setSideBarStepNumber(stepNumber);
+	};
 
 	return (
 		<>
 			<div className="finishing-up-container">
 				<div className="finishing-up-info-summary-container">
-					<div className="finishing-up">
-						<p className="info-heading">Finishing up</p>
-						<p className="info">
-							Double-check everything looks OK before confirming.
-						</p>
-					</div>
+					<StepTitle
+						heading={'Finishing up'}
+						additionalInfo={
+							'Double-check everything looks OK before confirming.'
+						}
+					/>
+
 					<div className="total-pricing">
 						<div className="plan-summary">
 							<div className="plan-title-container">
@@ -128,6 +137,7 @@ export default function FourthStep({
 					nextButtonLink={'/step5'}
 					nextButtonText={'Confirm'}
 					nextButtonClassName={'confirm-button-link'}
+					onNextButtonClick={handleNextButtonClick}
 				/>
 			</div>
 		</>
@@ -138,4 +148,5 @@ FourthStep.propTypes = {
 	infoAboutPlan: PropTypes.object,
 	infoAboutServices: PropTypes.array,
 	selectedSliderOption: PropTypes.any,
+	setSideBarStepNumber: PropTypes.func,
 };

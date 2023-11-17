@@ -52,3 +52,18 @@
 	font-size: 15px;
 	text-transform: uppercase;
 }
+
+/* STEPS CONTAINER CSS */
+
+.active-step {
+	background-color: var(--light-blue);
+}
+
+.active-step p {
+	font-size: 17px;
+	font-weight: 500;
+}
+
+.active-step p {
+	color: var(--marine-blue);
+}

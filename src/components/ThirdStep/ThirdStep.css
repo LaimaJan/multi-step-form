@@ -15,24 +15,6 @@
 	text-align: left;
 }
 
-.step-info {
-	display: flex;
-	flex-direction: column;
-	justify-content: left;
-	gap: 20px;
-}
-
-.info-heading {
-	font-size: 31px;
-	font-weight: 600;
-	color: var(--marine-blue);
-}
-
-.info {
-	color: var(--cool-gray);
-	margin-bottom: 10px;
-}
-
 .add-ons {
 	display: flex;
 	flex-direction: column;
@@ -40,7 +22,7 @@
 	align-items: center;
 	gap: 20px;
 	height: 300px;
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 }
 
 .add-ons button {
@@ -56,6 +38,11 @@
 	border-radius: 5px;
 	border: 1px solid var(--light-gray);
 	background-color: var(--alabaster);
+}
+
+.add-ons button.button-checked {
+	background-color: var(--magnolia);
+	border: 1px solid var(--purplish-blue);
 }
 
 .add-ons button:focus {

@@ -101,18 +101,3 @@ a {
 .disabled-link {
 	pointer-events: none;
 }
-
-/* STEPS CONTAINER CSS */
-/* 
-.first-step-container .step-round-number {
-	background-color: var(--light-blue);
-}
-
-.step-round-number p {
-	font-size: 17px;
-	font-weight: 500;
-}
-
-.first-step-container .step-round-number p {
-	color: var(--marine-blue);
-} */

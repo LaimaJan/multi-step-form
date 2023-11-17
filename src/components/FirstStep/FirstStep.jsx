@@ -2,14 +2,16 @@ import './FirstStep.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import StepTitle from '../StepTitle/StepTitle';
+import PropTypes from 'prop-types';
 
-export default function FirstStep() {
+export default function FirstStep({ setSideBarStepNumber }) {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [phone, setPhone] = useState('');
 	const [nameAlert, setNameAlert] = useState(false);
 	const [emailAlert, setEmailAlert] = useState(false);
 	const [phoneAlert, setPhoneAlert] = useState(false);
+	const stepNumber = 1;
 
 	const handleNameChange = (e) => {
 		const nameValue = e.target.value;
@@ -20,6 +22,8 @@ export default function FirstStep() {
 		} else {
 			setNameAlert(false);
 		}
+
+		setSideBarStepNumber(stepNumber);
 	};
 
 	const handleEmailChange = (e) => {
@@ -133,3 +137,7 @@ export default function FirstStep() {
 		</>
 	);
 }
+
+FirstStep.propTypes = {
+	setSideBarStepNumber: PropTypes.func,
+};

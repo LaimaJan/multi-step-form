@@ -1,11 +1,17 @@
 import './ThirdStep.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ForwardBackButtons from '../ForwardBackButtons/ForwardBackButtons';
+import StepTitle from '../StepTitle/StepTitle';
 
-export default function ThirdStep({ updateServiceInfo, selectedSliderOption }) {
+export default function ThirdStep({
+	updateServiceInfo,
+	selectedSliderOption,
+	setSideBarStepNumber,
+}) {
 	const [selectedAddOns, setSelectedAddOns] = useState([]);
 	const [serviceChosen, setServiceChosen] = useState([]);
+	const stepNumber = 3;
 
 	const addOnsInformation = [
 		{
@@ -53,19 +59,27 @@ export default function ThirdStep({ updateServiceInfo, selectedSliderOption }) {
 		updateServiceInfo(serviceChosen);
 	};
 
+	useEffect(() => {
+		setSideBarStepNumber(stepNumber);
+	});
+
 	return (
 		<>
 			<div className="pick-add-ons-container">
 				<div className="step-info-add-ons-container">
-					<div className="step-info">
-						<p className="info-heading">Pick add-ons</p>
-						<p className="info">Add-ons help enhance your gaming experience.</p>
-					</div>
+					<StepTitle
+						heading={'Pick add-ons'}
+						additionalInfo={'Add-ons help enhance your gaming experience.'}
+					/>
 					<div className="add-ons">
 						{addOnsInformation.map((addOn) => {
 							const isChecked = selectedAddOns.includes(addOn.id);
 							return (
-								<button key={addOn.id} onClick={() => toggleAddOn(addOn.id)}>
+								<button
+									key={addOn.id}
+									onClick={() => toggleAddOn(addOn.id)}
+									className={isChecked ? 'button-checked' : ''}
+								>
 									<div className="check-box-service-info-container">
 										<input
 											type="checkbox"
@@ -95,7 +109,6 @@ export default function ThirdStep({ updateServiceInfo, selectedSliderOption }) {
 					backButtonText={'Go Back'}
 					nextButtonLink={'/step4'}
 					nextButtonText={'Next Step'}
-					// nextButtonClassName={planChosen.id ? '' : 'disabled-link'}
 					onNextButtonClick={handleNextButtonClick}
 				/>
 			</div>
@@ -106,4 +119,5 @@ export default function ThirdStep({ updateServiceInfo, selectedSliderOption }) {
 ThirdStep.propTypes = {
 	updateServiceInfo: PropTypes.func,
 	selectedSliderOption: PropTypes.any,
+	setSideBarStepNumber: PropTypes.func,
 };

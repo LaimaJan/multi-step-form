@@ -27,7 +27,11 @@ a {
 	border: none;
 	background-color: transparent;
 	cursor: pointer;
-	color: var(--marine-blue);
+
 	font-size: 16px;
 	font-weight: 600;
+}
+
+.go-back-button a {
+	color: var(--cool-gray);
 }

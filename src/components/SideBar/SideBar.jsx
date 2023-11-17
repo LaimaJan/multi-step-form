@@ -2,13 +2,17 @@ import './SideBar.css';
 import PropTypes from 'prop-types';
 import SideBarBackgroundDesktop from '../../assets/images/bg-sidebar-desktop.svg';
 
-export default function SideBar({ className }) {
+export default function SideBar({ sideBarStepNumber }) {
 	return (
-		<div className={`form-steps-side ${className}`}>
+		<div className={`form-steps-side`}>
 			<img src={SideBarBackgroundDesktop} alt="side-bar-background-img" />
 			<div className="steps-card-container">
-				<div className="first-step-container steps-container">
-					<div className="step-round-number">
+				<div className="first-step-container steps-container ">
+					<div
+						className={`step-round-number ${
+							sideBarStepNumber === 1 ? 'active-step' : ''
+						}`}
+					>
 						<p>1</p>
 					</div>
 					<div className="steps-info">
@@ -17,7 +21,11 @@ export default function SideBar({ className }) {
 					</div>
 				</div>
 				<div className="second-step-container steps-container">
-					<div className="step-round-number">
+					<div
+						className={`step-round-number ${
+							sideBarStepNumber === 2 ? 'active-step' : ''
+						}`}
+					>
 						<p>2</p>
 					</div>
 					<div className="steps-info">
@@ -26,7 +34,11 @@ export default function SideBar({ className }) {
 					</div>
 				</div>
 				<div className="third-step-container steps-container">
-					<div className="step-round-number">
+					<div
+						className={`step-round-number ${
+							sideBarStepNumber === 3 ? 'active-step' : ''
+						}`}
+					>
 						<p>3</p>
 					</div>
 					<div className="steps-info">
@@ -35,7 +47,11 @@ export default function SideBar({ className }) {
 					</div>
 				</div>
 				<div className="fourth-step-container steps-container">
-					<div className="step-round-number">
+					<div
+						className={`step-round-number ${
+							sideBarStepNumber === 4 ? 'active-step' : ''
+						}`}
+					>
 						<p>4</p>
 					</div>
 					<div className="steps-info">
@@ -49,5 +65,5 @@ export default function SideBar({ className }) {
 }
 
 SideBar.propTypes = {
-	className: PropTypes.string,
+	sideBarStepNumber: PropTypes.number,
 };

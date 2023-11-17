@@ -11,7 +11,7 @@
 .finishing-up-info-summary-container {
 	display: flex;
 	flex-direction: column;
-	gap: 30px;
+	/* gap: 10px; */
 }
 
 .finishing-up {
@@ -25,6 +25,7 @@
 	background-color: var(--magnolia);
 	border-radius: 10px;
 	padding: 25px;
+	height: 195px;
 }
 
 .plan-summary {
@@ -80,7 +81,7 @@
 }
 
 .total-plan-services-pricing {
-	margin: 0 25px 70px 25px;
+	margin: 25px 25px 40px 25px;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;

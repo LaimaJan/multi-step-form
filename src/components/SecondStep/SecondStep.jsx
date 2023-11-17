@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './SecondStep.css';
 import ArcadeIcon from '../../assets/images/icon-arcade.svg';
 import AdvancedIcon from '../../assets/images/icon-advanced.svg';
@@ -11,6 +11,7 @@ export default function SecondStep({
 	updatePlanInfo,
 	selectedSliderOption,
 	setSelectedSliderOption,
+	setSideBarStepNumber,
 }) {
 	const [planChosen, setPlanChosen] = useState({
 		id: '',
@@ -20,6 +21,7 @@ export default function SecondStep({
 		planYearlyDeal: '',
 		monthlyOrYearly: '',
 	});
+	const stepNumber = 2;
 
 	const planOptions = [
 		{
@@ -81,7 +83,9 @@ export default function SecondStep({
 		}
 	};
 
-	console.log(selectedSliderOption);
+	useEffect(() => {
+		setSideBarStepNumber(stepNumber);
+	});
 
 	return (
 		<>
@@ -160,4 +164,5 @@ SecondStep.propTypes = {
 	updatePlanInfo: PropTypes.func,
 	selectedSliderOption: PropTypes.string,
 	setSelectedSliderOption: PropTypes.any,
+	setSideBarStepNumber: PropTypes.func,
 };

@@ -48,6 +48,26 @@ export default function FirstStep({ setSideBarStepNumber }) {
 		}
 	};
 
+	const handleButtonClick = () => {
+		if (!name.trim()) {
+			setNameAlert(true);
+		} else {
+			setNameAlert(false);
+		}
+
+		if (!email.includes('@')) {
+			setEmailAlert(true);
+		} else {
+			setEmailAlert(false);
+		}
+
+		if (!phone.trim()) {
+			setPhoneAlert(true);
+		} else {
+			setPhoneAlert(false);
+		}
+	};
+
 	return (
 		<>
 			<div className="form-container">
@@ -124,7 +144,7 @@ export default function FirstStep({ setSideBarStepNumber }) {
 					</div>
 				</div>
 				<div className="form-buttons">
-					<button className="next-button">
+					<button className="next-button" onClick={handleButtonClick}>
 						<Link
 							to={'/step2'}
 							className={name && email && phone ? '' : 'disabled-link'}

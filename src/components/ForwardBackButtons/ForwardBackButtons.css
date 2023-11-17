@@ -35,3 +35,7 @@ a {
 .go-back-button a {
 	color: var(--cool-gray);
 }
+
+.go-back-button a:hover {
+	color: var(--marine-blue);
+}

@@ -17,60 +17,50 @@ export default function FourthStep({
 	const stepNumber = 4;
 	const objectOfPlanInfo = planInfo;
 
-	useEffect(() => {
-		const countTotalPrice = () => {
-			let price = 0;
+	const countTotalPrice = () => {
+		let price = 0;
 
-			if (selectedSliderOption === 'Monthly') {
-				const planPriceMonth = +planInfo.planPricingMonth || 0;
+		if (selectedSliderOption === 'Monthly') {
+			const planPriceMonth = +planInfo.planPricingMonth || 0;
 
-				const servicePriceMonth = servicesInfo.map((service) => {
-					return +service.servicePricingMonthly || 0;
-				});
+			const servicePriceMonth = servicesInfo.map((service) => {
+				return +service.servicePricingMonthly || 0;
+			});
 
-				if (servicePriceMonth.length === 1) {
-					price += planPriceMonth + servicePriceMonth[0];
-				} else {
-					price +=
-						planPriceMonth +
-						servicePriceMonth.reduce((acc, val) => acc + val, 0);
-				}
+			if (servicePriceMonth.length === 1) {
+				price += planPriceMonth + servicePriceMonth[0];
 			} else {
-				const planPriceYearly = +planInfo.planPricingYearly || 0;
-
-				const servicePriceYearly = servicesInfo.map((service) => {
-					return +service.servicePricingYearly || 0;
-				});
-
-				if (servicePriceYearly.length === 1) {
-					price += planPriceYearly + servicePriceYearly[0];
-				} else {
-					price +=
-						planPriceYearly +
-						servicePriceYearly.reduce((acc, val) => acc + val, 0);
-				}
+				price +=
+					planPriceMonth + servicePriceMonth.reduce((acc, val) => acc + val, 0);
 			}
+		} else {
+			const planPriceYearly = +planInfo.planPricingYearly || 0;
 
-			return price;
-		};
+			const servicePriceYearly = servicesInfo.map((service) => {
+				return +service.servicePricingYearly || 0;
+			});
 
+			if (servicePriceYearly.length === 1) {
+				price += planPriceYearly + servicePriceYearly[0];
+			} else {
+				price +=
+					planPriceYearly +
+					servicePriceYearly.reduce((acc, val) => acc + val, 0);
+			}
+		}
+
+		return price;
+	};
+
+	useEffect(() => {
 		setPlanInfo(infoAboutPlan || []);
 		setServicesInfo(infoAboutServices || []);
 		setTotalPrice(countTotalPrice());
-		setSideBarStepNumber(stepNumber);
-	}, [
-		infoAboutPlan,
-		infoAboutServices,
-		selectedSliderOption,
-		planInfo.planPricingMonth,
-		planInfo.planPricingYearly,
-		servicesInfo,
-		setSideBarStepNumber,
-	]);
+	}, [infoAboutPlan, infoAboutServices, selectedSliderOption]);
 
-	const handleNextButtonClick = () => {
+	useEffect(() => {
 		setSideBarStepNumber(stepNumber);
-	};
+	}, [setSideBarStepNumber, stepNumber]);
 
 	return (
 		<>
@@ -137,7 +127,6 @@ export default function FourthStep({
 					nextButtonLink={'/step5'}
 					nextButtonText={'Confirm'}
 					nextButtonClassName={'confirm-button-link'}
-					onNextButtonClick={handleNextButtonClick}
 				/>
 			</div>
 		</>

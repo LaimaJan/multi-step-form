@@ -1,6 +1,7 @@
 import './FirstStep.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import StepTitle from '../StepTitle/StepTitle';
 
 export default function FirstStep() {
 	const [name, setName] = useState('');
@@ -45,14 +46,14 @@ export default function FirstStep() {
 
 	return (
 		<>
-			<div className="form-buttons-container">
+			<div className="form-container">
 				<div className="personal-info-form">
-					<div className="info">
-						<p className="heading">Personal info</p>
-						<p className="additional-info">
-							Please provide your name, email address, and phone number.
-						</p>
-					</div>
+					<StepTitle
+						heading={'Personal info'}
+						additionalInfo={
+							'	Please provide your name, email address, and phone number.'
+						}
+					/>
 					<div className="form-labels-inputs-container">
 						<div className="labels-inputs">
 							<div className="label-alert-container">

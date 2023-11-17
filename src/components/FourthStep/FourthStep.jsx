@@ -1,33 +1,68 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './FourthStep.css';
-
+import ForwardBackButtons from '../ForwardBackButtons/ForwardBackButtons';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-export default function FourthStep() {
-	const [planInfo, setPlanInfo] = useState([
-		{
-			id: 1,
-			planName: 'Arcade',
-			planPricingMonth: '$9/mo',
-			planPricingYearly: '$9/yr',
-			planYearlyDeal: '2 months free',
-		},
+export default function FourthStep({
+	infoAboutPlan,
+	infoAboutServices,
+	selectedSliderOption,
+}) {
+	const [planInfo, setPlanInfo] = useState([]);
+	const [servicesInfo, setServicesInfo] = useState([]);
+	const [totalPrice, setTotalPrice] = useState('');
+
+	const objectOfPlanInfo = planInfo;
+
+	useEffect(() => {
+		const countTotalPrice = () => {
+			let price = 0;
+
+			if (selectedSliderOption === 'Monthly') {
+				const planPriceMonth = +planInfo.planPricingMonth || 0;
+
+				const servicePriceMonth = servicesInfo.map((service) => {
+					return +service.servicePricingMonthly || 0;
+				});
+
+				if (servicePriceMonth.length === 1) {
+					price += planPriceMonth + servicePriceMonth[0];
+				} else {
+					price +=
+						planPriceMonth +
+						servicePriceMonth.reduce((acc, val) => acc + val, 0);
+				}
+			} else {
+				const planPriceYearly = +planInfo.planPricingYearly || 0;
+
+				const servicePriceYearly = servicesInfo.map((service) => {
+					return +service.servicePricingYearly || 0;
+				});
+
+				if (servicePriceYearly.length === 1) {
+					price += planPriceYearly + servicePriceYearly[0];
+				} else {
+					price +=
+						planPriceYearly +
+						servicePriceYearly.reduce((acc, val) => acc + val, 0);
+				}
+			}
+
+			return price;
+		};
+
+		setPlanInfo(infoAboutPlan || []);
+		setServicesInfo(infoAboutServices || []);
+		setTotalPrice(countTotalPrice());
+	}, [
+		infoAboutPlan,
+		infoAboutServices,
+		selectedSliderOption,
+		planInfo.planPricingMonth,
+		planInfo.planPricingYearly,
+		servicesInfo,
 	]);
-	const [servicesInfo, setServicesInfo] = useState([
-		{
-			id: 1,
-			addOnsTitle: 'Online service',
-			service: 'Access to multiplayer games',
-			servicePricing: '+$1/mo',
-		},
-		{
-			id: 3,
-			addOnsTitle: 'Customizable Profile',
-			service: 'Custom theme on your profile',
-			servicePricing: '+$2/mo',
-		},
-	]);
-	const [totalPrice, setTotalPrice] = useState('12');
 
 	return (
 		<>
@@ -42,67 +77,65 @@ export default function FourthStep() {
 					<div className="total-pricing">
 						<div className="plan-summary">
 							<div className="plan-title-container">
-								{planInfo.map((plan) => {
-									return (
-										<p className="plan-title" key={plan.id}>
-											{plan.planName}{' '}
-											{plan.planPricingMonth ? '(Monthly)' : '(Yearly)'}
-										</p>
-									);
-								})}
+								<p className="plan-title">
+									{objectOfPlanInfo.planName}{' '}
+									{objectOfPlanInfo.planPricingMonth ? '(Monthly)' : '(Yearly)'}
+								</p>
+
 								<p className="change-plan-title">
-									<Link>Change</Link>
+									<Link to="/step2">Change</Link>
 								</p>
 							</div>
-
 							<div className="plan-total-pricing">
-								{planInfo.map((plan) => {
-									return <p key={plan.id}>{plan.planPricingMonth}</p>;
-								})}
+								<p>
+									{objectOfPlanInfo.planPricingMonth !== ''
+										? '+$' + objectOfPlanInfo.planPricingMonth + '/mo'
+										: '+$' + objectOfPlanInfo.planPricingYearly + '/yr'}
+								</p>
 							</div>
 						</div>
 						<hr className="horizontal-line" />
 						<div className="other-services-pricing-container">
-							{servicesInfo.map((service) => {
-								return (
-									<div className="services-container" key={service.id}>
-										<p className="services-title">{service.addOnsTitle}</p>
-										<p className="services-pricing">{service.servicePricing}</p>
-									</div>
-								);
-							})}
+							{servicesInfo.map((service) => (
+								<div className="services-container" key={service.id}>
+									<p className="services-title">{service.addOnsTitle}</p>
+									<p className="services-pricing">
+										{selectedSliderOption === 'Monthly'
+											? '+$' + service.servicePricingMonthly + '/mo'
+											: '+$' + service.servicePricingYearly + '/yr'}
+									</p>
+								</div>
+							))}
 						</div>
 					</div>
 
 					<div className="total-plan-services-pricing">
-						{planInfo.map((plan) => {
-							return (
-								<p key={plan.id}>
-									Total {plan.planPricingMonth ? '(per month)' : '(per year)'}
-								</p>
-							);
-						})}
+						<p>
+							Total{' '}
+							{objectOfPlanInfo.planPricingMonth ? '(per month)' : '(per year)'}
+						</p>
 
-						{planInfo.map((plan) => {
-							return (
-								<p key={plan.id} className="total-price">
-									+${totalPrice}
-									{plan.planPricingMonth ? '/mo' : '/yr'}
-								</p>
-							);
-						})}
+						<p className="total-price">
+							+${totalPrice}
+							{objectOfPlanInfo.planPricingMonth ? '/mo' : '/yr'}
+						</p>
 					</div>
 				</div>
-				<div className="plan-buttons">
-					<button className="go-back-button">
-						<Link to={'/step3'}>Go Back</Link>
-					</button>
 
-					<button className="next-button">
-						<Link to={'/step5'}>Confirm</Link>
-					</button>
-				</div>
+				<ForwardBackButtons
+					backButtonLink={'/step3'}
+					backButtonText={'Go Back'}
+					nextButtonLink={'/step5'}
+					nextButtonText={'Confirm'}
+					nextButtonClassName={'confirm-button-link'}
+				/>
 			</div>
 		</>
 	);
 }
+
+FourthStep.propTypes = {
+	infoAboutPlan: PropTypes.object,
+	infoAboutServices: PropTypes.array,
+	selectedSliderOption: PropTypes.any,
+};

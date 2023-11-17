@@ -1,31 +1,33 @@
 import './ThirdStep.css';
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+import ForwardBackButtons from '../ForwardBackButtons/ForwardBackButtons';
 
-export default function ThirdStep() {
+export default function ThirdStep({ updateServiceInfo, selectedSliderOption }) {
 	const [selectedAddOns, setSelectedAddOns] = useState([]);
 	const [serviceChosen, setServiceChosen] = useState([]);
-
-	console.log(serviceChosen);
 
 	const addOnsInformation = [
 		{
 			id: 1,
 			addOnsTitle: 'Online service',
 			service: 'Access to multiplayer games',
-			servicePricing: '+$1/mo',
+			servicePricingMonthly: '1',
+			servicePricingYearly: '10',
 		},
 		{
 			id: 2,
 			addOnsTitle: 'Larger storage',
 			service: 'Extra 1TB of cloud save',
-			servicePricing: '+$2/mo',
+			servicePricingMonthly: '2',
+			servicePricingYearly: '20',
 		},
 		{
 			id: 3,
 			addOnsTitle: 'Customizable Profile',
 			service: 'Custom theme on your profile',
-			servicePricing: '+$2/mo',
+			servicePricingMonthly: '2',
+			servicePricingYearly: '20',
 		},
 	];
 
@@ -45,6 +47,10 @@ export default function ThirdStep() {
 			);
 			setServiceChosen([...serviceChosen, selectedService]);
 		}
+	};
+
+	const handleNextButtonClick = () => {
+		updateServiceInfo(serviceChosen);
 	};
 
 	return (
@@ -73,22 +79,31 @@ export default function ThirdStep() {
 										</div>
 									</div>
 
-									<p className="add-ons-price">{addOn.servicePricing}</p>
+									<p className="add-ons-price">
+										{selectedSliderOption == 'Monthly'
+											? '+$' + addOn.servicePricingMonthly + '/mo'
+											: '+$' + addOn.servicePricingYearly + '/yr'}
+									</p>
 								</button>
 							);
 						})}
 					</div>
 				</div>
-				<div className="plan-buttons">
-					<button className="go-back-button">
-						<Link to={'/step2'}>Go Back</Link>
-					</button>
 
-					<button className="next-button">
-						<Link to={'/step4'}>Next Step</Link>
-					</button>
-				</div>
+				<ForwardBackButtons
+					backButtonLink={'/step2'}
+					backButtonText={'Go Back'}
+					nextButtonLink={'/step4'}
+					nextButtonText={'Next Step'}
+					// nextButtonClassName={planChosen.id ? '' : 'disabled-link'}
+					onNextButtonClick={handleNextButtonClick}
+				/>
 			</div>
 		</>
 	);
 }
+
+ThirdStep.propTypes = {
+	updateServiceInfo: PropTypes.func,
+	selectedSliderOption: PropTypes.any,
+};

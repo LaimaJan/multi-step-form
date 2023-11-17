@@ -1,0 +1,16 @@
+.info {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	margin-bottom: 30px;
+}
+
+.info .heading {
+	font-size: 31px;
+	font-weight: 600;
+	color: var(--marine-blue);
+}
+
+.info .additional-info {
+	color: var(--cool-gray);
+}

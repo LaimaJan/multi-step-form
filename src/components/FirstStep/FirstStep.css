@@ -1,11 +1,12 @@
-.form-buttons-container {
+.form-container {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	padding: 0 110px;
 	max-width: 600px;
 	width: 100%;
-	gap: 80px;
+	gap: 50px;
+	max-height: 520px;
 }
 
 .personal-info-form {
@@ -13,23 +14,7 @@
 	flex-direction: column;
 	justify-content: center;
 	text-align: left;
-}
-
-.info {
-	display: flex;
-	flex-direction: column;
-	gap: 15px;
-	margin-bottom: 30px;
-}
-
-.info .heading {
-	font-size: 31px;
-	font-weight: 600;
-	color: var(--marine-blue);
-}
-
-.info .additional-info {
-	color: var(--cool-gray);
+	gap: 20px;
 }
 
 .form-labels-inputs-container {
@@ -104,11 +89,13 @@
 	color: var(--white);
 	font-weight: 600;
 	font-size: 16px;
+	cursor: pointer;
 }
 
 a {
 	text-decoration: none;
 	color: var(--white);
+	cursor: pointer;
 }
 
 .disabled-link {
@@ -116,7 +103,7 @@ a {
 }
 
 /* STEPS CONTAINER CSS */
-
+/* 
 .first-step-container .step-round-number {
 	background-color: var(--light-blue);
 }
@@ -128,4 +115,4 @@ a {
 
 .first-step-container .step-round-number p {
 	color: var(--marine-blue);
-}
+} */

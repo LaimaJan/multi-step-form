@@ -1,0 +1,33 @@
+.plan-buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+a {
+	text-decoration: none;
+	color: var(--marine-blue);
+	cursor: pointer;
+}
+
+.next-button a {
+	color: var(--white);
+}
+
+.confirm-button-link {
+	background-color: var(--purplish-blue);
+}
+
+.disabled-link {
+	pointer-events: none;
+}
+
+.go-back-button {
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	color: var(--marine-blue);
+	font-size: 16px;
+	font-weight: 600;
+}

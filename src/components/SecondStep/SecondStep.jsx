@@ -3,10 +3,15 @@ import './SecondStep.css';
 import ArcadeIcon from '../../assets/images/icon-arcade.svg';
 import AdvancedIcon from '../../assets/images/icon-advanced.svg';
 import ProIcon from '../../assets/images/icon-pro.svg';
-import { Link } from 'react-router-dom';
+import ForwardBackButtons from '../ForwardBackButtons/ForwardBackButtons';
+import StepTitle from '../StepTitle/StepTitle';
+import PropTypes from 'prop-types';
 
-export default function SecondStep() {
-	const [selectedOption, setSelectedOption] = useState('Monthly');
+export default function SecondStep({
+	updatePlanInfo,
+	selectedSliderOption,
+	setSelectedSliderOption,
+}) {
 	const [planChosen, setPlanChosen] = useState({
 		id: '',
 		planName: '',
@@ -20,38 +25,40 @@ export default function SecondStep() {
 		{
 			id: 1,
 			planName: 'Arcade',
-			planPricingMonth: '$9/mo',
-			planPricingYearly: '$9/yr',
+			planPricingMonth: '9',
+			planPricingYearly: '90',
 			planYearlyDeal: '2 months free',
 			planIcon: ArcadeIcon,
 		},
 		{
 			id: 2,
 			planName: 'Advanced',
-			planPricingMonth: '$12/mo',
-			planPricingYearly: '$120/yr',
+			planPricingMonth: '12',
+			planPricingYearly: '120',
 			planYearlyDeal: '2 months free',
 			planIcon: AdvancedIcon,
 		},
 		{
 			id: 3,
 			planName: 'Pro',
-			planPricingMonth: '$15/mo',
-			planPricingYearly: '$150/yr',
+			planPricingMonth: '15',
+			planPricingYearly: '150',
 			planYearlyDeal: '2 months free',
 			planIcon: ProIcon,
 		},
 	];
 
-	console.log(planChosen);
+	const handleNextButtonClick = () => {
+		updatePlanInfo(planChosen);
+	};
 
 	const handleToggleChange = (event) => {
 		const newValue = event.target.checked ? 'Yearly' : 'Monthly';
-		setSelectedOption(newValue);
+		setSelectedSliderOption(newValue);
 	};
 
 	const selectPlan = (plan) => {
-		if (selectedOption === 'Monthly') {
+		if (selectedSliderOption === 'Monthly') {
 			setPlanChosen({
 				...planChosen,
 				id: plan.id,
@@ -59,7 +66,7 @@ export default function SecondStep() {
 				planPricingMonth: plan.planPricingMonth,
 				planPricingYearly: '',
 				planYearlyDeal: '',
-				monthlyOrYearly: selectedOption,
+				monthlyOrYearly: selectedSliderOption,
 			});
 		} else {
 			setPlanChosen({
@@ -69,71 +76,88 @@ export default function SecondStep() {
 				planPricingMonth: '',
 				planPricingYearly: plan.planPricingYearly,
 				planYearlyDeal: plan.planYearlyDeal,
-				monthlyOrYearly: selectedOption,
+				monthlyOrYearly: selectedSliderOption,
 			});
 		}
 	};
 
+	console.log(selectedSliderOption);
+
 	return (
 		<>
 			<div className="select-plan-container">
-				<div className="info">
-					<p className="heading">Select your plan</p>
-					<p className="additional-info">
-						You have the option of monthly or yearly biling.
-					</p>
-				</div>
-				<div className="plan-options">
-					<div className="options">
-						{planOptions.map((plan) => {
-							return (
-								<button key={plan.id} onClick={() => selectPlan(plan)}>
-									<img src={plan.planIcon} alt="plan-icon" />
-									<div className="plan-info">
-										<p className="plan-name">{plan.planName}</p>
-										<p className="plan-pricing">
-											{selectedOption === 'Yearly'
-												? plan.planPricingYearly
-												: plan.planPricingMonth}
-										</p>
+				<div className="title-plan-container">
+					<StepTitle
+						heading={'Select your plan'}
+						additionalInfo={'You have the option of monthly or yearly biling.'}
+					/>
+					<div className="plan-options">
+						<div className="options">
+							{planOptions.map((plan) => {
+								return (
+									<button key={plan.id} onClick={() => selectPlan(plan)}>
+										<img src={plan.planIcon} alt="plan-icon" />
+										<div className="plan-info">
+											<p className="plan-name">{plan.planName}</p>
+											<p className="plan-pricing">
+												{selectedSliderOption === 'Yearly'
+													? '+$' + plan.planPricingYearly + '/yr'
+													: '+$' + plan.planPricingMonth + '/mo'}
+											</p>
 
-										<p
-											className={`plan-yearly-deal ${
-												selectedOption === 'Yearly' ? 'show' : ''
-											}`}
-										>
-											{plan.planYearlyDeal}
-										</p>
-									</div>
-								</button>
-							);
-						})}
+											<p
+												className={`plan-yearly-deal ${
+													selectedSliderOption === 'Yearly' ? 'show' : ''
+												}`}
+											>
+												{plan.planYearlyDeal}
+											</p>
+										</div>
+									</button>
+								);
+							})}
+						</div>
+
+						<div className="toggle-switch">
+							<p
+								className={`${
+									selectedSliderOption === 'Monthly'
+										? 'toggle-switch-month'
+										: ''
+								}`}
+							>
+								Monthly
+							</p>
+							<label className="switch">
+								<input type="checkbox" onChange={handleToggleChange} />
+								<span className="slider round"></span>
+							</label>
+							<p
+								className={`${
+									selectedSliderOption === 'Yearly' ? 'toggle-switch-month' : ''
+								}`}
+							>
+								Yearly
+							</p>
+						</div>
 					</div>
-
-					<div className="toggle-switch">
-						<p>Monthly</p>
-						<label className="switch">
-							<input type="checkbox" onChange={handleToggleChange} />
-							<span className="slider round"></span>
-						</label>
-						<p>Yearly</p>
-					</div>
 				</div>
-				<div className="plan-buttons">
-					<button className="go-back-button">
-						<Link to={'/'}>Go Back</Link>
-					</button>
 
-					<button className="next-button">
-						<Link
-							to={'/step3'}
-							className={planChosen.id ? '' : 'disabled-link'}
-						>
-							Next Step
-						</Link>
-					</button>
-				</div>
+				<ForwardBackButtons
+					backButtonLink={'/'}
+					backButtonText={'Go Back'}
+					nextButtonLink={'/step3'}
+					nextButtonText={'Next Step'}
+					nextLinkClassName={planChosen.id ? '' : 'disabled-link'}
+					onNextButtonClick={handleNextButtonClick}
+				/>
 			</div>
 		</>
 	);
 }
+
+SecondStep.propTypes = {
+	updatePlanInfo: PropTypes.func,
+	selectedSliderOption: PropTypes.string,
+	setSelectedSliderOption: PropTypes.any,
+};
